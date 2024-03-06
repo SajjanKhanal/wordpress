@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8000:80
+    environment:
+      WORDPRESS_DB_HOST: localhost
+      WORDPRESS_DB_USER: sajjan
+      WORDPRESS_DB_PASSWORD: password08
+      WORDPRESS_DB_NAME: new
+    volumes:
+      - wordpress:/var/www/
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: new
+      MYSQL_USER: sajjan
+      MYSQL_PASSWORD: P@ssword08
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  db:
