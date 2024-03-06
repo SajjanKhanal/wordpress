@@ -1,24 +1,36 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/your-repo.git'
+                // Check out the source code from the repository
+                git 'https://github.com/SajjanKhanal/wordpress.git'
             }
         }
+
         stage('Build') {
             steps {
-                // Add build steps here
+                // Build your WordPress site or perform any necessary build steps
+                // For example, if using Docker, you might build the Docker image here
+                sh 'docker build -t wordpress-site .'
             }
         }
+
         stage('Test') {
             steps {
-                // Add test steps here
+                // Run tests to ensure the code quality and functionality
+                // You might run automated tests here, such as PHPUnit tests for WordPress plugins/themes
+                // Example: sh 'phpunit tests/'
             }
         }
+
         stage('Deploy') {
             steps {
-                // Add deployment steps here
+                // Deploy the changes to your web server
+                // This could involve pushing the Docker image to a registry or deploying directly to a server
+                // Example: sh 'docker push username/wordpress-site:latest'
+                // Example: sh 'scp -r /path/to/wordpress-site user@web-server:/var/www/html/'
             }
         }
     }
